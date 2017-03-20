@@ -27,12 +27,19 @@ gulp.task('move-lib-js', function() {
 		.pipe(gulp.dest('dist/js/'))
 });
 
+gulp.task('move-fonts', function() {
+    gulp.src('src/fonts/*.{eot,otf,svg,ttf,woff}')
+        .pipe(gulp.dest('dist/fonts/'))
+});
+
 //Watch task
 gulp.task('default',function() {
     gulp.start('minify-css');
     gulp.start('compress-js');
     gulp.start('move-lib-js');
+    gulp.start('move-fonts');
     gulp.watch('src/lib/**/*.js', ['move-lib-js']);
+    gulp.watch('src/fonts/**/*.{eot,otf,svg,ttf,woff}', ['move-fonts']);
     gulp.watch('src/sass/**/*.scss',['minify-css']);
     gulp.watch('src/js/**/*.js', ['compress-js']);
 });

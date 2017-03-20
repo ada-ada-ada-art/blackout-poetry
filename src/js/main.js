@@ -51,8 +51,20 @@ function init() {
 		$('.ui').hide();
 		html2canvas(document.body, {
 			onrendered: function(canvas) {
-				var img = canvas.toDataURL();
-				window.location.href = img;
+				var dataUrl = canvas.toDataURL('image/png');
+				var imgName = 'BlackoutPoetry_' + Math.floor(Math.random() * 2000).toString() + '.png'
+    
+			    var element = document.createElement('a');
+			    element.setAttribute('href', dataUrl);
+			    element.setAttribute('download', imgName);
+
+			    element.style.display = 'none';
+			    document.body.appendChild(element);
+			  
+			    element.click();
+
+			    document.body.removeChild(element);
+			    $('.ui').show();
 			}
 		});
 		e.preventDefault();

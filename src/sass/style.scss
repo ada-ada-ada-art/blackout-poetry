@@ -1,13 +1,13 @@
 @font-face {
-	font-family: Euclid;
-	src:
-		local("Euclid Flex"),
-		url(src/EuclidFlex-Regular.otf);
-	font-weight: bold;
+	font-family: 'Euclid Flex';
+	src: url('../../src/fonts/EuclidFlex-Regular.eot');
+	src: local('Euclid Flex'), url('../../src/fonts/EuclidFlex-Regular.woff') format('woff'), url('../../src/fonts/EuclidFlex-Regular.ttf') format('truetype'), url('../../src/fonts/EuclidFlex-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 html {
-	font-family: Euclid, "Euclid Flex", sans-serif;
+	font-family: 'Euclid Flex';
 	font-size: 14px;
 	user-select: none;
 }
