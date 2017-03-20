@@ -1,0 +1,82 @@
+@font-face {
+	font-family: Euclid;
+	src:
+		local("Euclid Flex"),
+		url(src/EuclidFlex-Regular.otf);
+	font-weight: bold;
+}
+
+html {
+	font-family: Euclid, "Euclid Flex", sans-serif;
+	font-size: 14px;
+	user-select: none;
+}
+
+.ui {
+	background: #fff;
+	bottom: 0;
+	display: flex;
+	height: 6rem;
+	left: 0;
+	position: fixed;
+	width: 100vw;
+}
+
+.ui > * {
+	align-items: center;
+	background: #000;
+	color: #fff;
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+	justify-content: center;
+}
+
+.tweet-btn {
+	background: #1dcaff;
+	text-decoration: none;
+}
+
+.image-btn {
+	background: #f00;
+	text-decoration: none;
+}
+
+label {
+	span {
+		font-size: 1rem;
+	}
+
+	input {
+		display: none;
+	}
+
+	input:checked + span {
+		text-decoration: underline;
+	}
+}
+
+.poetry-container {
+	line-height: 1.5;
+	margin: 2rem auto 9rem;
+	text-align: center;
+	word-spacing: 6px;
+	width: 50vw;
+}
+
+span {
+	font-size: 2rem;
+	&.blacked-out {
+		background: #000;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	html {
+		font-size: 12px;
+	}
+
+	.poetry-container {
+		width: 90vw;
+	}
+}
