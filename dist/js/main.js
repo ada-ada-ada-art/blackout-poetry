@@ -48,11 +48,22 @@ function init() {
 	});
 
 	$('.image-btn').click(function(e) {
+		reverseBlackout();
 		$('.ui').hide();
 		html2canvas(document.body, {
 			onrendered: function(canvas) {
 				var dataUrl = canvas.toDataURL('image/png');
 				var imgName = 'BlackoutPoetry_' + Math.floor(Math.random() * 2000).toString() + '.png'
+
+				console.log(dataUrl);
+				sendToPath('post', '/save-lyric', {'data' : dataUrl}, function (error, response) {
+			        if(!error) {
+			        	console.log('Saved image!');
+			        }
+			        else {
+			        	console.log(error.message);
+			        }
+			    });
     
 			    var element = document.createElement('a');
 			    element.setAttribute('href', dataUrl);
@@ -64,6 +75,7 @@ function init() {
 			    element.click();
 
 			    document.body.removeChild(element);
+			    resetReverseBlackout();
 			    $('.ui').show();
 			}
 		});
@@ -119,6 +131,14 @@ function blackoutPoetry() {
 	$('.lyrics-result span').addClass('blacked-out');
 }
 
+function reverseBlackout() {
+	$('body').addClass('reverse-blackout');
+}
+
+function resetReverseBlackout() {
+	$('body').removeClass('reverse-blackout');
+}
+
 function randomizePoetry() {
 	var wordCount = $('.lyrics-result span').length;
 
@@ -159,6 +179,9 @@ function sendToPath(method, path, data, progress, done) {
         url      : path,
         type     : method,
         data     : data,
+        xhrFields: {
+            withCredentials: true
+        },
         success  : function (body) {
             callback(undefined, body);
         },
